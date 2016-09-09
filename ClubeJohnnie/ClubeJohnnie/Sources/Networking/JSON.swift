@@ -144,6 +144,20 @@ extension JSON {
         return self.int ?? 0
     }
     
+    public var bool: Bool? {
+        switch self.type {
+        case .Number: return self.numberValue?.boolValue
+        case .String:
+            let stringValue = self.stringValue.lowercaseString
+            return stringValue == "true" || stringValue == "t"
+        default: return nil
+        }
+    }
+    
+    public var boolValue: Bool {
+        return self.bool ?? false
+    }
+    
     public var float: Float? {
         return self.type == .Number ? self.numberValue?.floatValue : nil
     }
@@ -160,11 +174,14 @@ extension JSON {
         return self.string ?? ""
     }
     
-    public var array: [AnyObject]? {
-        return self.type == .Array ? self.object as? [AnyObject] : nil
+    public var array: [JSON]? {
+        if self.type == .Array {
+            return (self.object as! [AnyObject]).map({ JSON(object: $0) })
+        }
+        return nil
     }
     
-    public var arrayValue: [AnyObject] {
+    public var arrayValue: [JSON] {
         return self.array ?? []
     }
 }

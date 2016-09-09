@@ -60,13 +60,22 @@ class JSONTests : XCTestCase {
     func testJSON_WithJSONContainingArray_ShouldSubscriptArrayCorrectly() {
         let rewardsHistory = self.json["user"]["rewardsHistory"]
         let firstReward = rewardsHistory[0]
+        let secondReward = rewardsHistory[1]
         XCTAssertTrue(rewardsHistory.type == .Array, "getting \(rewardsHistory.type) instead of Array expected")
         XCTAssertEqual(firstReward["name"].stringValue, "Milkshake")
+        XCTAssertEqual(secondReward["points"].floatValue, 18)
     }
     
     func testJSON_WithJSONContainingString_ShouldParseStringCorrectly() {
         XCTAssertNotNil(self.json["user"]["name"].string)
         XCTAssertEqual(self.json["user"]["name"].stringValue, "Vinicius Rodrigues")
+    }
+    
+    func testJSON_WithJSONContainingString_ShouldParseBoolCorrectly() {
+        XCTAssertNotNil(self.json["user"]["verified"].bool)
+        XCTAssertNotNil(self.json["user"]["blacklisted"].bool)
+        XCTAssertTrue(self.json["user"]["verified"].boolValue)
+        XCTAssertFalse(self.json["user"]["blacklisted"].boolValue)
     }
     
     func testJSON_WithJSONContainingInt_ShouldParseIntCorrectly() {
