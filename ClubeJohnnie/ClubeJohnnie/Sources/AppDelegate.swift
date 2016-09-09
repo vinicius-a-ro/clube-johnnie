@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        NetworkManager.sharedInstance.request(.GET, url: "") { (json: JSON?, error: NSError?) in
+            if let json = json {
+                print("args: \(json["args"])")
+                print("headers: \(json["headers"])")
+                print("origin: \(json["origin"].stringValue)")
+                print("url: \(json["url"].stringValue)")
+            }
+        }
+        
         return true
     }
 

@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		4674D6575F4EE5070E957171 /* Pods_ClubeJohnnie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5448C513525ABB720B8109 /* Pods_ClubeJohnnie.framework */; };
 		7818B727A8FFC7FA802CA0EC /* Pods_ClubeJohnnieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870920CB6BE04C426812323C /* Pods_ClubeJohnnieTests.framework */; };
-		817679291D7FAC84008E0F90 /* ClubeJohnnieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817679281D7FAC84008E0F90 /* ClubeJohnnieTests.swift */; };
+		81060A131D8122730022A5AC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A121D8122730022A5AC /* JSONTests.swift */; };
+		81060A181D8123620022A5AC /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 81060A171D8123620022A5AC /* User.json */; };
 		817679341D7FAC84008E0F90 /* ClubeJohnnieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817679331D7FAC84008E0F90 /* ClubeJohnnieUITests.swift */; };
 		817679541D7FAD1F008E0F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817679421D7FAD1F008E0F90 /* Assets.xcassets */; };
 		817679551D7FAD1F008E0F90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817679441D7FAD1F008E0F90 /* LaunchScreen.storyboard */; };
 		817679561D7FAD1F008E0F90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817679461D7FAD1F008E0F90 /* Main.storyboard */; };
 		817679581D7FAD1F008E0F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8176794B1D7FAD1F008E0F90 /* AppDelegate.swift */; };
 		817679591D7FAD1F008E0F90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817679511D7FAD1F008E0F90 /* ViewController.swift */; };
+		8176795D1D7FAF5E008E0F90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8176795C1D7FAF5E008E0F90 /* NetworkManager.swift */; };
+		8176795F1D7FB0E8008E0F90 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8176795E1D7FB0E8008E0F90 /* JSON.swift */; };
 		FF3FA9D9EDB884BF3D14EC87 /* Pods_ClubeJohnnieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76DBF3B441DAB210A98F97C /* Pods_ClubeJohnnieUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,10 +41,11 @@
 
 /* Begin PBXFileReference section */
 		171745762A6998E4BD71DC69 /* Pods-ClubeJohnnie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubeJohnnie.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubeJohnnie/Pods-ClubeJohnnie.release.xcconfig"; sourceTree = "<group>"; };
+		81060A121D8122730022A5AC /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
+		81060A171D8123620022A5AC /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
+		81060A1A1D8123720022A5AC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		817679101D7FAC83008E0F90 /* ClubeJohnnie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubeJohnnie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817679241D7FAC84008E0F90 /* ClubeJohnnieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		817679281D7FAC84008E0F90 /* ClubeJohnnieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubeJohnnieTests.swift; sourceTree = "<group>"; };
-		8176792A1D7FAC84008E0F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8176792F1D7FAC84008E0F90 /* ClubeJohnnieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		817679331D7FAC84008E0F90 /* ClubeJohnnieUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubeJohnnieUITests.swift; sourceTree = "<group>"; };
 		817679351D7FAC84008E0F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +55,8 @@
 		817679491D7FAD1F008E0F90 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8176794B1D7FAD1F008E0F90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		817679511D7FAD1F008E0F90 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8176795C1D7FAF5E008E0F90 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8176795E1D7FB0E8008E0F90 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		870920CB6BE04C426812323C /* Pods_ClubeJohnnieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubeJohnnieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97412D90E511CA0A8E1A108C /* Pods-ClubeJohnnieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubeJohnnieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubeJohnnieTests/Pods-ClubeJohnnieTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA3F313936E11C26B8B03750 /* Pods-ClubeJohnnieUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubeJohnnieUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubeJohnnieUITests/Pods-ClubeJohnnieUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +118,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		81060A161D8123620022A5AC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				81060A171D8123620022A5AC /* User.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81060A191D8123720022A5AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81060A1A1D8123720022A5AC /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		817679071D7FAC83008E0F90 = {
 			isa = PBXGroup;
 			children = (
@@ -146,8 +168,9 @@
 		817679271D7FAC84008E0F90 /* ClubeJohnnieTests */ = {
 			isa = PBXGroup;
 			children = (
-				817679281D7FAC84008E0F90 /* ClubeJohnnieTests.swift */,
-				8176792A1D7FAC84008E0F90 /* Info.plist */,
+				81060A121D8122730022A5AC /* JSONTests.swift */,
+				81060A161D8123620022A5AC /* Resources */,
+				81060A191D8123720022A5AC /* Supporting Files */,
 			);
 			path = ClubeJohnnieTests;
 			sourceTree = "<group>";
@@ -210,6 +233,8 @@
 		8176794D1D7FAD1F008E0F90 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8176795C1D7FAF5E008E0F90 /* NetworkManager.swift */,
+				8176795E1D7FB0E8008E0F90 /* JSON.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -375,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81060A181D8123620022A5AC /* User.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +541,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8176795D1D7FAF5E008E0F90 /* NetworkManager.swift in Sources */,
+				8176795F1D7FB0E8008E0F90 /* JSON.swift in Sources */,
 				817679591D7FAD1F008E0F90 /* ViewController.swift in Sources */,
 				817679581D7FAD1F008E0F90 /* AppDelegate.swift in Sources */,
 			);
@@ -524,7 +552,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				817679291D7FAC84008E0F90 /* ClubeJohnnieTests.swift in Sources */,
+				81060A131D8122730022A5AC /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +713,7 @@
 			baseConfigurationReference = 97412D90E511CA0A8E1A108C /* Pods-ClubeJohnnieTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ClubeJohnnieTests/Info.plist;
+				INFOPLIST_FILE = "ClubeJohnnieTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.bydoo.ClubeJohnnieTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -698,7 +726,7 @@
 			baseConfigurationReference = CE5C65EDF5FE81F27E8977A3 /* Pods-ClubeJohnnieTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = ClubeJohnnieTests/Info.plist;
+				INFOPLIST_FILE = "ClubeJohnnieTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.bydoo.ClubeJohnnieTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
