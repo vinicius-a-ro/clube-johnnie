@@ -11,6 +11,14 @@
 		7818B727A8FFC7FA802CA0EC /* Pods_ClubeJohnnieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870920CB6BE04C426812323C /* Pods_ClubeJohnnieTests.framework */; };
 		81060A131D8122730022A5AC /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A121D8122730022A5AC /* JSONTests.swift */; };
 		81060A181D8123620022A5AC /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 81060A171D8123620022A5AC /* User.json */; };
+		81060A221D824A7E0022A5AC /* LocalAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A1D1D824A7E0022A5AC /* LocalAccessible.swift */; };
+		81060A231D824A7E0022A5AC /* RealmAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A1E1D824A7E0022A5AC /* RealmAccessible.swift */; };
+		81060A241D824A7E0022A5AC /* RemoteAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A1F1D824A7E0022A5AC /* RemoteAccessible.swift */; };
+		81060A251D824A7E0022A5AC /* RemoteLocalAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A201D824A7E0022A5AC /* RemoteLocalAccessible.swift */; };
+		81060A261D824A7E0022A5AC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A211D824A7E0022A5AC /* String.swift */; };
+		81060A281D824DE10022A5AC /* RemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A271D824DE10022A5AC /* RemoteTests.swift */; };
+		81060A2A1D824E1A0022A5AC /* ClubeJohnnieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */; };
+		81060A2D1D824E9F0022A5AC /* TestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A2C1D824E9F0022A5AC /* TestUser.swift */; };
 		817679341D7FAC84008E0F90 /* ClubeJohnnieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817679331D7FAC84008E0F90 /* ClubeJohnnieUITests.swift */; };
 		817679541D7FAD1F008E0F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817679421D7FAD1F008E0F90 /* Assets.xcassets */; };
 		817679551D7FAD1F008E0F90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817679441D7FAD1F008E0F90 /* LaunchScreen.storyboard */; };
@@ -44,6 +52,14 @@
 		81060A121D8122730022A5AC /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		81060A171D8123620022A5AC /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
 		81060A1A1D8123720022A5AC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81060A1D1D824A7E0022A5AC /* LocalAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalAccessible.swift; sourceTree = "<group>"; };
+		81060A1E1D824A7E0022A5AC /* RealmAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAccessible.swift; sourceTree = "<group>"; };
+		81060A1F1D824A7E0022A5AC /* RemoteAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteAccessible.swift; sourceTree = "<group>"; };
+		81060A201D824A7E0022A5AC /* RemoteLocalAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLocalAccessible.swift; sourceTree = "<group>"; };
+		81060A211D824A7E0022A5AC /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		81060A271D824DE10022A5AC /* RemoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteTests.swift; sourceTree = "<group>"; };
+		81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubeJohnnieTests.swift; sourceTree = "<group>"; };
+		81060A2C1D824E9F0022A5AC /* TestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUser.swift; sourceTree = "<group>"; };
 		817679101D7FAC83008E0F90 /* ClubeJohnnie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubeJohnnie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817679241D7FAC84008E0F90 /* ClubeJohnnieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8176792F1D7FAC84008E0F90 /* ClubeJohnnieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +150,26 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		81060A1C1D824A7E0022A5AC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				81060A1D1D824A7E0022A5AC /* LocalAccessible.swift */,
+				81060A1E1D824A7E0022A5AC /* RealmAccessible.swift */,
+				81060A1F1D824A7E0022A5AC /* RemoteAccessible.swift */,
+				81060A201D824A7E0022A5AC /* RemoteLocalAccessible.swift */,
+				81060A211D824A7E0022A5AC /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		81060A2B1D824E9F0022A5AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				81060A2C1D824E9F0022A5AC /* TestUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		817679071D7FAC83008E0F90 = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +204,10 @@
 		817679271D7FAC84008E0F90 /* ClubeJohnnieTests */ = {
 			isa = PBXGroup;
 			children = (
+				81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */,
+				81060A271D824DE10022A5AC /* RemoteTests.swift */,
 				81060A121D8122730022A5AC /* JSONTests.swift */,
+				81060A2B1D824E9F0022A5AC /* Model */,
 				81060A161D8123620022A5AC /* Resources */,
 				81060A191D8123720022A5AC /* Supporting Files */,
 			);
@@ -215,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				8176794B1D7FAD1F008E0F90 /* AppDelegate.swift */,
+				81060A1C1D824A7E0022A5AC /* Extensions */,
 				8176794C1D7FAD1F008E0F90 /* Model */,
 				8176794D1D7FAD1F008E0F90 /* Networking */,
 				8176794E1D7FAD1F008E0F90 /* Persistence */,
@@ -541,8 +581,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81060A221D824A7E0022A5AC /* LocalAccessible.swift in Sources */,
 				8176795D1D7FAF5E008E0F90 /* NetworkManager.swift in Sources */,
 				8176795F1D7FB0E8008E0F90 /* JSON.swift in Sources */,
+				81060A261D824A7E0022A5AC /* String.swift in Sources */,
+				81060A251D824A7E0022A5AC /* RemoteLocalAccessible.swift in Sources */,
+				81060A241D824A7E0022A5AC /* RemoteAccessible.swift in Sources */,
+				81060A231D824A7E0022A5AC /* RealmAccessible.swift in Sources */,
 				817679591D7FAD1F008E0F90 /* ViewController.swift in Sources */,
 				817679581D7FAD1F008E0F90 /* AppDelegate.swift in Sources */,
 			);
@@ -552,7 +597,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81060A2D1D824E9F0022A5AC /* TestUser.swift in Sources */,
+				81060A2A1D824E1A0022A5AC /* ClubeJohnnieTests.swift in Sources */,
 				81060A131D8122730022A5AC /* JSONTests.swift in Sources */,
+				81060A281D824DE10022A5AC /* RemoteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

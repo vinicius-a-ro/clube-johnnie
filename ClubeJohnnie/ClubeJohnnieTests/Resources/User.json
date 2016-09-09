@@ -4,6 +4,8 @@
         "age": 27,
         "height": 1.69,
         "email": "vinicius.a.ro@gmail.com",
+        "verified" : "true",
+        "blacklisted" : "false",
         "credentials": {
             "username": "vinicius.a.ro",
             "password": "as8asd9f0a0s1023123df=="

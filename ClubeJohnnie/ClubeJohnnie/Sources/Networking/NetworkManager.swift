@@ -37,19 +37,26 @@ public class NetworkManager {
 //--------------------------------------------------
     
     public static let sharedInstance = NetworkManager()
-    public static var baseURL: String = ""
+    public var baseURLString: String = ""
     
     public func request(requestType: Method,
                         url: String,
                         parameters: [String : AnyObject]? = nil,
                         completion: NetworkResult) {
         
-        let url = "\(NetworkManager.baseURL)/\(url)"
+        let url = "\(NetworkManager.sharedInstance.baseURLString)\(url)"
         let method = Alamofire.Method(requestType)
         
         Alamofire.request(method, url, parameters: parameters)
             .responseJSON { response in
-            completion(json: JSON(data: response.data), error: response.result.error)
+                
+            let responseJSON = JSON(data: response.data)
+            if responseJSON["success"].boolValue {
+                completion(json: responseJSON["data"], error: response.result.error)
+            }
+            else {
+                // TODO: handle error
+            }
         }
     }
 }
