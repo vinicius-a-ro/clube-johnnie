@@ -26,6 +26,9 @@ private func copy<T: Object>(object: T?) -> T? {
     for property in object.objectSchema.properties {
         copy[property.name] = object[property.name]
     }
+    for ignoredProperty in object.dynamicType.ignoredProperties() {
+        copy.setValue(object.valueForKey(ignoredProperty), forKey: ignoredProperty)
+    }
     return copy
 }
 
@@ -63,18 +66,19 @@ extension LocalAccessible where EntityType : Object {
         if let realm = try? Realm() {
             var results = realm.objects(EntityType.self)
             
+            var sortProperties: [SortDescriptor] = []
             for key in sortKeys {
                 switch key {
                 case .Ascending(let value):
-                    results = results.sorted(value, ascending: true)
+                    sortProperties.append(SortDescriptor(property: value, ascending: true))
                 case .Descending(let value):
-                    results = results.sorted(value, ascending: false)
+                    sortProperties.append(SortDescriptor(property: value, ascending: false))
                 }
             }
-            
+            results = results.sorted(sortProperties)
             fetchedEntities = results.filter({ _ in return true })
         }
-        return fetchedEntities
+        return fetchedEntities.map({ copy($0)! })
     }
     
     static func fetch(withId id: String) -> EntityType? {
@@ -82,7 +86,7 @@ extension LocalAccessible where EntityType : Object {
         if let realm = try? Realm() {
             fetchedEntity = realm.objects(EntityType.self).filter({ $0.objectId == id }).first
         }
-        return fetchedEntity
+        return copy(fetchedEntity)
     }
 }
 
@@ -94,12 +98,13 @@ extension LocalAccessible where EntityType : Object {
 
 extension LocalAccessible where EntityType : Object {
     
-    static func save(objects: [EntityType], completion: ((error: NSError?) -> ())? = nil) {
+    static func save(objects: [EntityType], completion: ((savedObjects: [EntityType], error: NSError?) -> ())? = nil) {
         if let realm = try? Realm() {
             _ = try? realm.write {
                 realm.add(objects, update: true)
-                completion?(error: nil)
             }
+            let savedObjects = objects.map({ copy($0)! })
+            completion?(savedObjects: savedObjects, error: nil)
         }
     }
 }

@@ -21,6 +21,13 @@ class TestUser : Object {
     dynamic var testUserId: String = ""
     dynamic var name: String = ""
     dynamic var age: Int = 0
+    dynamic var verified: Bool = false
+    
+    var someNotStoredProperty: String = "Value"
+    
+    override static func ignoredProperties() -> [String] {
+        return ["someNotStoredProperty"]
+    }
 }
 
 extension TestUser : RemoteAccessible {
@@ -34,6 +41,7 @@ extension TestUser : RemoteAccessible {
         testUser.testUserId = json["testUserId"].stringValue
         testUser.name = json["name"].stringValue
         testUser.age = json["age"].intValue
+        testUser.verified = json["verified"].boolValue
         return testUser
     }
 }

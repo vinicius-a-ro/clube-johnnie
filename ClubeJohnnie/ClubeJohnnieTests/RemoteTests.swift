@@ -39,7 +39,7 @@ class RemoteTests: ClubeJohnnieTests {
             XCTAssertEqual(json!["age"].intValue, 26)
             expectation.fulfill()
         }
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectationsWithTimeout(20, handler: nil)
     }
 
     func testRemoteGET_ByGettingAllUserFromServer_ShouldReturnValidJSON() {
@@ -61,7 +61,7 @@ class RemoteTests: ClubeJohnnieTests {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectationsWithTimeout(20, handler: nil)
     }
     
 //--------------------------------------------------
@@ -79,7 +79,7 @@ class RemoteTests: ClubeJohnnieTests {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectationsWithTimeout(20, handler: nil)
     }
     
     func testRemoteMap_ByMappingRemoteJSONArrayToUser_ShouldMapJSONValuesIntoModelObject() {
@@ -101,7 +101,7 @@ class RemoteTests: ClubeJohnnieTests {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(10, handler: nil)
+        self.waitForExpectationsWithTimeout(20, handler: nil)
     }
     
 //--------------------------------------------------

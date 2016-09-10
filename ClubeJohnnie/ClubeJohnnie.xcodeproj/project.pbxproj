@@ -20,7 +20,7 @@
 		81060A2A1D824E1A0022A5AC /* ClubeJohnnieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */; };
 		81060A2D1D824E9F0022A5AC /* TestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A2C1D824E9F0022A5AC /* TestUser.swift */; };
 		81060A2F1D8258740022A5AC /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A2E1D8258740022A5AC /* RealmTests.swift */; };
-		8151A7481D825D4300E7CFDC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8151A7471D825D4300E7CFDC /* DataManager.swift */; };
+		8151A74B1D844FAC00E7CFDC /* Friends.json in Resources */ = {isa = PBXBuildFile; fileRef = 8151A74A1D844FAB00E7CFDC /* Friends.json */; };
 		817679341D7FAC84008E0F90 /* ClubeJohnnieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817679331D7FAC84008E0F90 /* ClubeJohnnieUITests.swift */; };
 		817679541D7FAD1F008E0F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817679421D7FAD1F008E0F90 /* Assets.xcassets */; };
 		817679551D7FAD1F008E0F90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817679441D7FAD1F008E0F90 /* LaunchScreen.storyboard */; };
@@ -63,7 +63,7 @@
 		81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubeJohnnieTests.swift; sourceTree = "<group>"; };
 		81060A2C1D824E9F0022A5AC /* TestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUser.swift; sourceTree = "<group>"; };
 		81060A2E1D8258740022A5AC /* RealmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
-		8151A7471D825D4300E7CFDC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		8151A74A1D844FAB00E7CFDC /* Friends.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Friends.json; sourceTree = "<group>"; };
 		817679101D7FAC83008E0F90 /* ClubeJohnnie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubeJohnnie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817679241D7FAC84008E0F90 /* ClubeJohnnieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8176792F1D7FAC84008E0F90 /* ClubeJohnnieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				81060A171D8123620022A5AC /* User.json */,
+				8151A74A1D844FAB00E7CFDC /* Friends.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -287,7 +288,6 @@
 		8176794E1D7FAD1F008E0F90 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				8151A7471D825D4300E7CFDC /* DataManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -447,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81060A181D8123620022A5AC /* User.json in Resources */,
+				8151A74B1D844FAC00E7CFDC /* Friends.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +589,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81060A221D824A7E0022A5AC /* LocalAccessible.swift in Sources */,
-				8151A7481D825D4300E7CFDC /* DataManager.swift in Sources */,
 				8176795D1D7FAF5E008E0F90 /* NetworkManager.swift in Sources */,
 				8176795F1D7FB0E8008E0F90 /* JSON.swift in Sources */,
 				81060A261D824A7E0022A5AC /* String.swift in Sources */,

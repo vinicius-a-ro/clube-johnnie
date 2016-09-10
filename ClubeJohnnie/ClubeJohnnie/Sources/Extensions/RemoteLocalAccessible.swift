@@ -35,8 +35,8 @@ extension RemoteLocalAccessible {
         self.getAll { (json, error) in
             if let json = json {
                 let objects = self.mapArray(json)
-                self.save(objects) { (error) in
-                    completion(data: objects, error: error)
+                self.save(objects) { (savedObjects, error) in
+                    completion(data: savedObjects, error: error)
                 }
             }
             else {
