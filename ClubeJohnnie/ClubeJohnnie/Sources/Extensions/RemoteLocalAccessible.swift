@@ -26,7 +26,7 @@ extension RemoteLocalAccessible {
     
     typealias EntityArrayResult = (data: [EntityType], error: NSError?) -> ()
     
-    static func loadAll(sortKeys: [SortKey]? = [], returnCachedResults: Bool = true, completion: EntityArrayResult) {
+    static func loadAll(sortKeys: [SortKey] = [], returnCachedResults: Bool = true, completion: EntityArrayResult) {
         
         if returnCachedResults {
             completion(data: self.fetchAll(sortKeys), error: nil)

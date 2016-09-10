@@ -18,6 +18,17 @@ extension Object {
     }
 }
 
+private func copy<T: Object>(object: T?) -> T? {
+    guard let object = object else {
+        return nil
+    }
+    let copy = T()
+    for property in object.objectSchema.properties {
+        copy[property.name] = object[property.name]
+    }
+    return copy
+}
+
 //----------------------------------------------------------------------------------------------------------
 //
 // MARK: - Extension - Create -
@@ -29,7 +40,13 @@ extension LocalAccessible where EntityType : Object {
     static func create(withId id: String) -> EntityType? {
         var entity = EntityType()
         entity.objectId = id
-        return entity
+        
+        if let realm = try? Realm() {
+            _ = try? realm.write {
+                realm.add(entity, update: true)
+            }
+        }
+        return copy(entity)
     }
 }
 
@@ -41,19 +58,17 @@ extension LocalAccessible where EntityType : Object {
 
 extension LocalAccessible where EntityType : Object {
     
-    static func fetchAll(sortKeys: [SortKey]? = []) -> [EntityType] {
+    static func fetchAll(sortKeys: [SortKey] = []) -> [EntityType] {
         var fetchedEntities: [EntityType] = []
         if let realm = try? Realm() {
             var results = realm.objects(EntityType.self)
             
-            if let sortKeys = sortKeys {
-                for key in sortKeys {
-                    switch key {
-                    case .Ascending(let value):
-                        results = results.sorted(value, ascending: true)
-                    case .Descending(let value):
-                        results = results.sorted(value, ascending: false)
-                    }
+            for key in sortKeys {
+                switch key {
+                case .Ascending(let value):
+                    results = results.sorted(value, ascending: true)
+                case .Descending(let value):
+                    results = results.sorted(value, ascending: false)
                 }
             }
             

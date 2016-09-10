@@ -29,13 +29,14 @@ protocol Unique {
     var objectId: String {get set}
 }
 
-protocol LocalAccessible : Unique {
+protocol LocalAccessible {
+    
     associatedtype EntityType : Unique
     
     static var entityName: String {get}
     
     static func create(withId id: String) -> EntityType?
-    static func fetchAll(sortKeys: [SortKey]?) -> [EntityType]
+    static func fetchAll(sortKeys: [SortKey]) -> [EntityType]
     static func fetch(withId id: String) -> EntityType?
     static func save(objects: [EntityType], completion: ((error: NSError?) -> ())?)
 }
@@ -47,7 +48,7 @@ protocol LocalAccessible : Unique {
 //----------------------------------------------------------------------------------------------------------
 
 extension LocalAccessible {
-    static func fetchAll(sortKeys: [SortKey]?, completion: (data: [EntityType], error: NSError?) -> ()) {
+    static func fetchAll(sortKeys: [SortKey] = [], completion: (data: [EntityType], error: NSError?) -> ()) {
         let data = self.fetchAll(sortKeys)
         completion(data: data, error: nil)
     }

@@ -19,6 +19,8 @@
 		81060A281D824DE10022A5AC /* RemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A271D824DE10022A5AC /* RemoteTests.swift */; };
 		81060A2A1D824E1A0022A5AC /* ClubeJohnnieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */; };
 		81060A2D1D824E9F0022A5AC /* TestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A2C1D824E9F0022A5AC /* TestUser.swift */; };
+		81060A2F1D8258740022A5AC /* RealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81060A2E1D8258740022A5AC /* RealmTests.swift */; };
+		8151A7481D825D4300E7CFDC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8151A7471D825D4300E7CFDC /* DataManager.swift */; };
 		817679341D7FAC84008E0F90 /* ClubeJohnnieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817679331D7FAC84008E0F90 /* ClubeJohnnieUITests.swift */; };
 		817679541D7FAD1F008E0F90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 817679421D7FAD1F008E0F90 /* Assets.xcassets */; };
 		817679551D7FAD1F008E0F90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817679441D7FAD1F008E0F90 /* LaunchScreen.storyboard */; };
@@ -60,6 +62,8 @@
 		81060A271D824DE10022A5AC /* RemoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteTests.swift; sourceTree = "<group>"; };
 		81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubeJohnnieTests.swift; sourceTree = "<group>"; };
 		81060A2C1D824E9F0022A5AC /* TestUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUser.swift; sourceTree = "<group>"; };
+		81060A2E1D8258740022A5AC /* RealmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmTests.swift; sourceTree = "<group>"; };
+		8151A7471D825D4300E7CFDC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		817679101D7FAC83008E0F90 /* ClubeJohnnie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubeJohnnie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		817679241D7FAC84008E0F90 /* ClubeJohnnieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8176792F1D7FAC84008E0F90 /* ClubeJohnnieUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubeJohnnieUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +210,7 @@
 			children = (
 				81060A291D824E1A0022A5AC /* ClubeJohnnieTests.swift */,
 				81060A271D824DE10022A5AC /* RemoteTests.swift */,
+				81060A2E1D8258740022A5AC /* RealmTests.swift */,
 				81060A121D8122730022A5AC /* JSONTests.swift */,
 				81060A2B1D824E9F0022A5AC /* Model */,
 				81060A161D8123620022A5AC /* Resources */,
@@ -282,6 +287,7 @@
 		8176794E1D7FAD1F008E0F90 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				8151A7471D825D4300E7CFDC /* DataManager.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -582,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81060A221D824A7E0022A5AC /* LocalAccessible.swift in Sources */,
+				8151A7481D825D4300E7CFDC /* DataManager.swift in Sources */,
 				8176795D1D7FAF5E008E0F90 /* NetworkManager.swift in Sources */,
 				8176795F1D7FB0E8008E0F90 /* JSON.swift in Sources */,
 				81060A261D824A7E0022A5AC /* String.swift in Sources */,
@@ -598,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81060A2D1D824E9F0022A5AC /* TestUser.swift in Sources */,
+				81060A2F1D8258740022A5AC /* RealmTests.swift in Sources */,
 				81060A2A1D824E1A0022A5AC /* ClubeJohnnieTests.swift in Sources */,
 				81060A131D8122730022A5AC /* JSONTests.swift in Sources */,
 				81060A281D824DE10022A5AC /* RemoteTests.swift in Sources */,
@@ -737,6 +745,7 @@
 			baseConfigurationReference = C4E5346D9A493B3249CB574F /* Pods-ClubeJohnnie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ClubeJohnnie/Resources/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.bydoo.ClubeJohnnie;
@@ -749,6 +758,7 @@
 			baseConfigurationReference = 171745762A6998E4BD71DC69 /* Pods-ClubeJohnnie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ClubeJohnnie/Resources/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.bydoo.ClubeJohnnie;
