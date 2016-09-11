@@ -9,6 +9,12 @@
 import Foundation
 import RealmSwift
 
+//----------------------------------------------------------------------------------------------------------
+//
+// MARK: - Definitions -
+//
+//----------------------------------------------------------------------------------------------------------
+
 extension Object {
     static func primaryKey() -> String? {
         if self is Unique.Type {
@@ -18,13 +24,25 @@ extension Object {
     }
 }
 
-private func copy<T: Object>(object: T?) -> T? {
+extension LocalAccessible where Self : Object, Self : Unique {
+    static var dataAccess: RealmAccessor<Self> {
+        return RealmAccessor()
+    }
+}
+
+private func realmCopy<T:Object>(object: T?) -> T? {
     guard let object = object else {
         return nil
     }
-    let copy = T()
+    let copy = object.dynamicType.init()
     for property in object.objectSchema.properties {
-        copy[property.name] = object[property.name]
+        let value = object[property.name]
+        if let obj = value as? Object {
+            copy[property.name] = realmCopy(obj)
+        }
+        else {
+            copy[property.name] = value
+        }
     }
     for ignoredProperty in object.dynamicType.ignoredProperties() {
         copy.setValue(object.valueForKey(ignoredProperty), forKey: ignoredProperty)
@@ -34,37 +52,43 @@ private func copy<T: Object>(object: T?) -> T? {
 
 //----------------------------------------------------------------------------------------------------------
 //
-// MARK: - Extension - Create -
+// MARK: - Struct -
 //
 //----------------------------------------------------------------------------------------------------------
 
-extension LocalAccessible where EntityType : Object {
+struct RealmAccessor<Type:Object> : DataAccessorType {
+    typealias EntityType = Type
     
-    static func create(withId id: String) -> EntityType? {
-        var entity = EntityType()
-        entity.objectId = id
-        
-        if let realm = try? Realm() {
-            _ = try? realm.write {
-                realm.add(entity, update: true)
-            }
+//--------------------------------------------------
+// MARK: - Create
+//--------------------------------------------------
+    
+    func create(withId id: String) -> Type? {
+        let object = Type()
+        if var uniqueObject = object as? Unique {
+            uniqueObject.objectId = id
         }
-        return copy(entity)
+        return object
     }
-}
-
-//----------------------------------------------------------------------------------------------------------
-//
-// MARK: - Extension - Fetch -
-//
-//----------------------------------------------------------------------------------------------------------
-
-extension LocalAccessible where EntityType : Object {
     
-    static func fetchAll(sortKeys: [SortKey] = []) -> [EntityType] {
-        var fetchedEntities: [EntityType] = []
+//--------------------------------------------------
+// MARK: - Fetch
+//--------------------------------------------------
+    
+    func fetch(withId id: String) -> Type? {
+        var fetchedEntity: Type?
         if let realm = try? Realm() {
-            var results = realm.objects(EntityType.self)
+            fetchedEntity = realm.objects(Type.self).filter({ (element: Type) -> Bool in
+                return (element as? Unique)?.objectId == id
+            }).first
+        }
+        return realmCopy(fetchedEntity)
+    }
+    
+    func fetchAll(sortKeys: [SortKey] = []) -> [Type] {
+        var fetchedEntities: [Type] = []
+        if let realm = try? Realm() {
+            var results = realm.objects(Type.self)
             
             var sortProperties: [SortDescriptor] = []
             for key in sortKeys {
@@ -78,34 +102,20 @@ extension LocalAccessible where EntityType : Object {
             results = results.sorted(sortProperties)
             fetchedEntities = results.filter({ _ in return true })
         }
-        return fetchedEntities.map({ copy($0)! })
+        return fetchedEntities.map({ $0 })
     }
     
-    static func fetch(withId id: String) -> EntityType? {
-        var fetchedEntity: EntityType?
-        if let realm = try? Realm() {
-            fetchedEntity = realm.objects(EntityType.self).filter({ $0.objectId == id }).first
-        }
-        return copy(fetchedEntity)
-    }
-}
-
-//----------------------------------------------------------------------------------------------------------
-//
-// MARK: - Extension - Save -
-//
-//----------------------------------------------------------------------------------------------------------
-
-extension LocalAccessible where EntityType : Object {
+//--------------------------------------------------
+// MARK: - Save
+//--------------------------------------------------
     
-    static func save(objects: [EntityType], completion: ((savedObjects: [EntityType], error: NSError?) -> ())? = nil) {
+    func save(objects: [Type], completion: ((savedObjects: [Type], error: NSError?) -> ())?) {
         if let realm = try? Realm() {
             _ = try? realm.write {
                 realm.add(objects, update: true)
             }
-            let savedObjects = objects.map({ copy($0)! })
+            let savedObjects = objects.map({ realmCopy($0)! })
             completion?(savedObjects: savedObjects, error: nil)
         }
     }
 }
-

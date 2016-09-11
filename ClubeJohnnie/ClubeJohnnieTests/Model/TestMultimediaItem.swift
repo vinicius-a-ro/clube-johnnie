@@ -20,14 +20,13 @@ class TestMultimediaItem : Object {
     
     dynamic var remoteURL: String = ""
     dynamic var cacheURL: String = ""
-    dynamic var objectId: String = ""
-}
-
-extension TestMultimediaItem : RemoteAccessible {
     
     static var entityName: String {
         return "TestMultimediaItem"
     }
+}
+
+extension TestMultimediaItem : RemoteAccessible {
     
     static func map(json: JSON) -> TestMultimediaItem? {
         return TestMultimediaItem.map(json, urlKey: "url")
@@ -35,12 +34,15 @@ extension TestMultimediaItem : RemoteAccessible {
     
     static func map(json: JSON, urlKey: String, associatedObject: Unique? = nil) -> TestMultimediaItem? {
         let id = "\(associatedObject?.objectId ?? "")-\(json[urlKey].stringValue)"
-        let newItem = TestMultimediaItem.create(withId: id) as! TestMultimediaItem
+        let newItem = TestMultimediaItem.dataAccess.create(withId: id)!
         newItem.remoteURL = json[urlKey].stringValue
         return newItem
     }
 }
 
 extension TestMultimediaItem : LocalAccessible {
-    
+    var objectId: String {
+        get { return self.remoteURL }
+        set { self.remoteURL = newValue }
+    }
 }

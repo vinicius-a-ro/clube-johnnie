@@ -22,26 +22,26 @@ protocol RemoteLocalAccessible: RemoteAccessible, LocalAccessible {}
 //
 //----------------------------------------------------------------------------------------------------------
 
-extension RemoteLocalAccessible {
-    
-    typealias EntityArrayResult = (data: [EntityType], error: NSError?) -> ()
-    
-    static func loadAll(sortKeys: [SortKey] = [], returnCachedResults: Bool = true, completion: EntityArrayResult) {
-        
-        if returnCachedResults {
-            completion(data: self.fetchAll(sortKeys), error: nil)
-        }
-        
-        self.getAll { (json, error) in
-            if let json = json {
-                let objects = self.mapArray(json)
-                self.save(objects) { (savedObjects, error) in
-                    completion(data: savedObjects, error: error)
-                }
-            }
-            else {
-                completion(data: [], error: error)
-            }
-        }
-    }
-}
+//extension RemoteLocalAccessible {
+//    
+//    typealias EntityArrayResult = (data: [EntityType], error: NSError?) -> ()
+//    
+//    static func loadAll(sortKeys: [SortKey] = [], returnCachedResults: Bool = true, completion: EntityArrayResult) {
+//        
+//        if returnCachedResults {
+//            completion(data: self.dataAccess.fetchAll(sortKeys), error: nil)
+//        }
+//        
+//        self.getAll { (json, error) in
+//            if let json = json {
+//                let objects = self.mapArray(json)
+//                self.dataAccess.save(objects) { (savedObjects, error) in
+//                    completion(data: savedObjects, error: error)
+//                }
+//            }
+//            else {
+//                completion(data: [], error: error)
+//            }
+//        }
+//    }
+//}

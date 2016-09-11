@@ -48,9 +48,7 @@ extension TestUser : RemoteAccessible {
     }
 }
 
-extension TestUser : LocalAccessible, Unique {
-    typealias EntityType = TestUser
-    
+extension TestUser : LocalAccessible {
     var objectId: String {
         get { return self.testUserId }
         set { self.testUserId = newValue }
