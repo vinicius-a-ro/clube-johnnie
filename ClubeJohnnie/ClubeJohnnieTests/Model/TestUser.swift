@@ -22,6 +22,7 @@ class TestUser : Object {
     dynamic var name: String = ""
     dynamic var age: Int = 0
     dynamic var verified: Bool = false
+    dynamic var profilePicture: TestMultimediaItem?
     
     var someNotStoredProperty: String = "Value"
     
@@ -42,6 +43,7 @@ extension TestUser : RemoteAccessible {
         testUser.name = json["name"].stringValue
         testUser.age = json["age"].intValue
         testUser.verified = json["verified"].boolValue
+        testUser.profilePicture = TestMultimediaItem.map(json, urlKey: "profilePictureURL", associatedObject: testUser)!
         return testUser
     }
 }

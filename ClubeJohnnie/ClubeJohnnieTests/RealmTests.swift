@@ -189,4 +189,43 @@ class RealmTests : ClubeJohnnieTests {
             XCTAssertEqual(savedTestUser.someNotStoredProperty, "Some Value")
         }
     }
+    
+    func testCRUD_BySavingObject_ShouldHoldIgnoredPropertiesValue123123s() {
+        let profilePictureURL = "http://lorempixel.com/600/600/business/"
+        let multimediaItem = TestMultimediaItem.create(withId: profilePictureURL)!
+        
+        TestMultimediaItem.save([multimediaItem]) { (savedObjects, error) in
+            XCTAssertNil(error)
+        }
+    }
+    
+    func testCRUD_BySavingObjectWithOtherObjectAsProperty_ShouldSaveChildObject() {
+        let profilePictureURL = "http://lorempixel.com/600/600/business/"
+        let testUser = TestUser.create(withId: "123")!
+        let multimediaItem = TestMultimediaItem.create(withId: profilePictureURL)!
+        testUser.profilePicture = multimediaItem
+        
+        TestUser.save([testUser]) { (savedObjects, error) in
+            let fetchedTestUser = TestUser.fetch(withId: "123")
+            XCTAssertNotNil(fetchedTestUser?.profilePicture)
+            XCTAssertEqual(fetchedTestUser?.profilePicture?.objectId, profilePictureURL)
+        }
+    }
+    
+//    func testCRUD_BySavingObjectWithOtherObjectAsProperty_ShouldAllowChildObjectEditing() {
+//        let profilePictureURL = "http://lorempixel.com/600/600/business/"
+//        let testUser = TestUser.create(withId: "123")!
+//        let multimediaItem = TestMultimediaItem.create(withId: profilePictureURL)!
+//        testUser.profilePicture = multimediaItem
+//        
+//        TestUser.save([testUser]) { (savedObjects, error) in
+//            
+//            let fetchedTestUser = TestUser.fetch(withId: "123")!
+//            fetchedTestUser.profilePicture?.remoteURL = profilePictureURL
+//            
+//            TestUser.save([fetchedTestUser]) { (_ , error) in
+//                XCTAssertNil(error)
+//            }
+//        }
+//    }
 }
