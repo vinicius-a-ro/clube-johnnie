@@ -14,34 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "148C0BF56D443424E4090108D7475D64"
-               BuildableName = "Pods_ClubeJohnnie.framework"
-               BlueprintName = "Pods-ClubeJohnnie"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B35C6BE86197092D87F4EE122C39A8D"
-               BuildableName = "Pods_ClubeJohnnieTests.framework"
-               BlueprintName = "Pods-ClubeJohnnieTests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "817679231D7FAC84008E0F90"
                BuildableName = "ClubeJohnnieTests.xctest"
                BlueprintName = "ClubeJohnnieTests"
