@@ -6,5 +6,3 @@ script: xcodebuild test -workspace ClubeJohnnie/ClubeJohnnie.xcworkspace -scheme
 
 notifications:
   slack: churrasbox:GKwhiMPP3NxProBosb9e2BzH
-
-travis encrypt "churrasbox:GKwhiMPP3NxProBosb9e2BzH" --add notifications.slack
