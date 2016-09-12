@@ -5,7 +5,7 @@ xcode_scheme: ClubeJohnnieTests
 podfile: ClubeJohnnie/Podfile
 script:
   xctool
-  -workspace ClubeJohnnie/SampleNotifcations.xcworkspace
+  -workspace ClubeJohnnie/ClubeJohnnie.xcworkspace
   -scheme ClubeJohnnieTests
   build
   test
