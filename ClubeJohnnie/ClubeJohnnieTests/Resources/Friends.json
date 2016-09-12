@@ -1,0 +1,224 @@
+{
+    "friends": [
+            {
+                "user": {
+                    "name": "Vinicius Rodrigues",
+                    "age": 27,
+                    "testUserId": "A01",
+                    "height": 1.69,
+                    "email": "vinicius.a.ro@gmail.com",
+                    "verified": "true",
+                    "blacklisted": "false",
+                    "credentials": {
+                    "username": "vinicius.a.ro",
+                    "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+            },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 2",
+                "age": 27,
+                "testUserId": "A02",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 3",
+                "age": 27,
+                "testUserId": "A03",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 4",
+                "age": 27,
+                "testUserId": "A04",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 5",
+                "age": 27,
+                "testUserId": "A05",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 6",
+                "age": 27,
+                "testUserId": "A06",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 7",
+                "age": 27,
+                "testUserId": "A07",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 8",
+                "age": 27,
+                "testUserId": "A08",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 9",
+                "age": 27,
+                "testUserId": "A09",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                },
+                {
+                "user": {
+                "name": "Vinicius Rodrigues 10",
+                "age": 27,
+                "testUserId": "A010",
+                "height": 1.69,
+                "email": "vinicius.a.ro@gmail.com",
+                "verified": "true",
+                "blacklisted": "false",
+                "credentials": {
+                "username": "vinicius.a.ro",
+                "password": "as8asd9f0a0s1023123df=="
+                },
+                "rewardsHistory": [{
+                                   "name": "Milkshake",
+                                   "points": 9
+                                   }, {
+                                   "name": "Super Burger",
+                                   "points": 18
+                                   }]
+                }
+                }
+    ]
+}

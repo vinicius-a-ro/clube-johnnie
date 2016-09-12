@@ -1,0 +1,21 @@
+{
+    "user": {
+        "name": "Vinicius Rodrigues",
+        "age": 27,
+        "height": 1.69,
+        "email": "vinicius.a.ro@gmail.com",
+        "verified" : "true",
+        "blacklisted" : "false",
+        "credentials": {
+            "username": "vinicius.a.ro",
+            "password": "as8asd9f0a0s1023123df=="
+        },
+        "rewardsHistory": [{
+                           "name": "Milkshake",
+                           "points": 9
+                           }, {
+                           "name": "Super Burger",
+                           "points": 18
+                           }]
+    }
+}
