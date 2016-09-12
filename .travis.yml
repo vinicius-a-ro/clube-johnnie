@@ -2,4 +2,4 @@ language: objective-c
 osx_image: xcode7.3
 xcode_workspace: ClubeJohnnie/ClubeJohnnie.xcworkspace
 xcode_scheme: ClubeJohnnieTests
-script: set -o pipefail && xcodebuild test -workspace ClubeJohnnie/ClubeJohnnie.xcworkspace -scheme ClubeJohnnieTests -sdk iphonesimulator9.3
+script: xcodebuild test -workspace ClubeJohnnie/ClubeJohnnie.xcworkspace -scheme ClubeJohnnieTests -sdk iphonesimulator9.3
