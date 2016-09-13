@@ -66,7 +66,7 @@ class RealmTests : ClubeJohnnieTests {
 //--------------------------------------------------
     
     func testCRUD_ByCreatingUserWithId_ShouldPersistUser() {
-        let testUser = TestUser.dataAccess.create(withId: "123")
+        let testUser = TestUser.create(withId: "123")
         XCTAssertNotNil(testUser)
         XCTAssertEqual(testUser!.testUserId, "123")
     }
@@ -76,7 +76,7 @@ class RealmTests : ClubeJohnnieTests {
 //--------------------------------------------------
     
     func testCRUD_ByFetchingNotStoredUser_ShouldReturnEmptyData() {
-        let testUser = TestUser.dataAccess.fetch(withId: "123")
+        let testUser = TestUser.fetch(withId: "123")
         XCTAssertNil(testUser)
     }
 
@@ -86,11 +86,11 @@ class RealmTests : ClubeJohnnieTests {
         let age = 26
         let expectation = self.expectationWithDescription("save user")
         
-        let testUser = TestUser.dataAccess.create(withId: id)!
+        let testUser = TestUser.create(withId: id)!
         testUser.age = age
         testUser.name = name
-        TestUser.dataAccess.save([testUser]) { (savedObjects, error) in
-            let fetchedTestUser = TestUser.dataAccess.fetch(withId: id)!
+        TestUser.save([testUser]) { (savedObjects, error) in
+            let fetchedTestUser = TestUser.fetch(withId: id)!
             XCTAssertNotNil(fetchedTestUser)
             XCTAssertEqual(fetchedTestUser.age, age)
             XCTAssertEqual(fetchedTestUser.name, name)
@@ -101,21 +101,21 @@ class RealmTests : ClubeJohnnieTests {
     }
     
     func testCRUD_ByFetchingAllUsers_ShouldReturnEmptyData() {
-        let allTestUsers = TestUser.dataAccess.fetchAll()
+        let allTestUsers = TestUser.fetchAll()
         XCTAssertTrue(allTestUsers.isEmpty)
     }
     
     func testCRUD_BySavingAndFetchingAllUsers_ShouldReturnFullFriendsData() {
-        TestUser.dataAccess.save(self.friends) { (savedObjects, error) in
-            let allTestUsers = TestUser.dataAccess.fetchAll()
+        TestUser.save(self.friends) { (savedObjects, error) in
+            let allTestUsers = TestUser.fetchAll()
             XCTAssertEqual(allTestUsers.count, savedObjects.count)
             XCTAssertEqual(allTestUsers.count, self.friends.count)
         }
     }
     
     func testCRUD_ByFetchingAllUsersWithAscendingSortKeys_ShouldReturnSortedObject() {
-        TestUser.dataAccess.save(self.friends) { (_, _) in
-            let allTestUsers = TestUser.dataAccess.fetchAll([SortKey.Ascending("testUserId")])
+        TestUser.save(self.friends) { (_, _) in
+            let allTestUsers = TestUser.fetchAll([SortKey.Ascending("testUserId")])
             let firstUser = allTestUsers.first!
             let lastUser = allTestUsers.last!
             XCTAssertTrue(firstUser.testUserId < lastUser.testUserId)
@@ -123,8 +123,8 @@ class RealmTests : ClubeJohnnieTests {
     }
     
     func testCRUD_ByFetchingAllUsersWithDescendingSortKeys_ShouldReturnSortedObject() {
-        TestUser.dataAccess.save(self.friends) { (_, _) in
-            let allTestUsers = TestUser.dataAccess.fetchAll([SortKey.Descending("testUserId")])
+        TestUser.save(self.friends) { (_, _) in
+            let allTestUsers = TestUser.fetchAll([SortKey.Descending("testUserId")])
             let firstUser = allTestUsers.first!
             let lastUser = allTestUsers.last!
             XCTAssertTrue(firstUser.testUserId > lastUser.testUserId)
@@ -134,14 +134,14 @@ class RealmTests : ClubeJohnnieTests {
     func testCRUD_ByUpdatingFetchedObject_ShouldNotRaiseNotInWriteTransactionException() {
         let expectation = self.expectationWithDescription("save user")
         let id = "111"
-        let testUser = TestUser.dataAccess.create(withId: id)!
+        let testUser = TestUser.create(withId: id)!
         
-        TestUser.dataAccess.save([testUser]) { (savedObjects, error) in
-            let fetchedTestUser = TestUser.dataAccess.fetch(withId: id)!
+        TestUser.save([testUser]) { (savedObjects, error) in
+            let fetchedTestUser = TestUser.fetch(withId: id)!
             fetchedTestUser.age = 27
             fetchedTestUser.name = "John Doe"
             
-            TestUser.dataAccess.save([fetchedTestUser]) { (savedObjects, error) in
+            TestUser.save([fetchedTestUser]) { (savedObjects, error) in
                 expectation.fulfill()
                 XCTAssertNil(error)
             }
@@ -151,7 +151,7 @@ class RealmTests : ClubeJohnnieTests {
     }
 
     func testCRUD_BySavingBatchUsers_ShouldStoreSavedInformation() {
-        TestUser.dataAccess.save(self.friends) { (savedObjects, error) in
+        TestUser.save(self.friends) { (savedObjects, error) in
             XCTAssertNil(error)
             
             for friend in self.friends {
@@ -165,13 +165,13 @@ class RealmTests : ClubeJohnnieTests {
         let expectation = self.expectationWithDescription(#function)
         let friends = self.friends
         
-        TestUser.dataAccess.save(friends) { (friends, error) in
+        TestUser.save(friends) { (friends, error) in
             XCTAssertNil(error)
 
             for friend in friends {
                 friend.verified = true
             }
-            TestUser.dataAccess.save(friends) { (error) in
+            TestUser.save(friends) { (error) in
                 XCTAssertEqual(friends.filter({ $0.verified == true }).count, friends.count)
                 expectation.fulfill()
             }
@@ -181,10 +181,10 @@ class RealmTests : ClubeJohnnieTests {
     }
 
     func testCRUD_BySavingObject_ShouldHoldIgnoredPropertiesValues() {
-        let testUser = TestUser.dataAccess.create(withId: "123")!
+        let testUser = TestUser.create(withId: "123")!
         testUser.someNotStoredProperty = "Some Value"
 
-        TestUser.dataAccess.save([testUser]) { (savedObjects, error) in
+        TestUser.save([testUser]) { (savedObjects, error) in
             let savedTestUser = savedObjects.first!
             XCTAssertEqual(savedTestUser.someNotStoredProperty, "Some Value")
         }
@@ -192,21 +192,21 @@ class RealmTests : ClubeJohnnieTests {
     
     func testCRUD_BySavingObject_ShouldHoldIgnoredPropertiesValue123123s() {
         let profilePictureURL = "http://lorempixel.com/600/600/business/"
-        let multimediaItem = TestMultimediaItem.dataAccess.create(withId: profilePictureURL)!
+        let multimediaItem = TestMultimediaItem.create(withId: profilePictureURL)!
         
-        TestMultimediaItem.dataAccess.save([multimediaItem]) { (savedObjects, error) in
+        TestMultimediaItem.save([multimediaItem]) { (savedObjects, error) in
             XCTAssertNil(error)
         }
     }
     
     func testCRUD_BySavingObjectWithOtherObjectAsProperty_ShouldSaveChildObject() {
         let profilePictureURL = "http://lorempixel.com/600/600/business/"
-        let testUser = TestUser.dataAccess.create(withId: "123")!
-        let multimediaItem = TestMultimediaItem.dataAccess.create(withId: profilePictureURL)!
+        let testUser = TestUser.create(withId: "123")!
+        let multimediaItem = TestMultimediaItem.create(withId: profilePictureURL)!
         testUser.profilePicture = multimediaItem
         
-        TestUser.dataAccess.save([testUser]) { (savedObjects, error) in
-            let fetchedTestUser = TestUser.dataAccess.fetch(withId: "123")
+        TestUser.save([testUser]) { (savedObjects, error) in
+            let fetchedTestUser = TestUser.fetch(withId: "123")
             XCTAssertNotNil(fetchedTestUser?.profilePicture)
             XCTAssertEqual(fetchedTestUser?.profilePicture?.objectId, profilePictureURL)
         }
@@ -214,16 +214,16 @@ class RealmTests : ClubeJohnnieTests {
     
     func testCRUD_BySavingObjectWithOtherObjectAsProperty_ShouldAllowChildObjectEditing() {
         let profilePictureURL = "http://lorempixel.com/600/600/business/"
-        let testUser = TestUser.dataAccess.create(withId: "123")!
-        let multimediaItem = TestMultimediaItem.dataAccess.create(withId: profilePictureURL)!
+        let testUser = TestUser.create(withId: "123")!
+        let multimediaItem = TestMultimediaItem.create(withId: profilePictureURL)!
         testUser.profilePicture = multimediaItem
         
-        TestUser.dataAccess.save([testUser]) { (savedObjects, error) in
+        TestUser.save([testUser]) { (savedObjects, error) in
             
-            let fetchedTestUser = TestUser.dataAccess.fetch(withId: "123")!
+            let fetchedTestUser = TestUser.fetch(withId: "123")!
             fetchedTestUser.profilePicture?.remoteURL = profilePictureURL
             
-            TestUser.dataAccess.save([fetchedTestUser]) { (_ , error) in
+            TestUser.save([fetchedTestUser]) { (_ , error) in
                 XCTAssertNil(error)
             }
         }

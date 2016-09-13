@@ -24,16 +24,7 @@ extension Object {
     }
 }
 
-extension LocalAccessible where Self : Object, Self : Unique {
-    static var dataAccess: RealmAccessor<Self> {
-        return RealmAccessor()
-    }
-}
-
-private func realmCopy<T:Object>(object: T?) -> T? {
-    guard let object = object else {
-        return nil
-    }
+private func realmCopy<T:Object>(object: T) -> T {
     let copy = object.dynamicType.init()
     for property in object.objectSchema.properties {
         let value = object[property.name]
@@ -52,43 +43,39 @@ private func realmCopy<T:Object>(object: T?) -> T? {
 
 //----------------------------------------------------------------------------------------------------------
 //
-// MARK: - Struct -
+// MARK: - Extension - Create
 //
 //----------------------------------------------------------------------------------------------------------
 
-struct RealmAccessor<Type:Object> : DataAccessorType {
-    typealias EntityType = Type
+extension LocalAccessible where EntityType : Object {
     
-//--------------------------------------------------
-// MARK: - Create
-//--------------------------------------------------
-    
-    func create(withId id: String) -> Type? {
-        let object = Type()
-        if var uniqueObject = object as? Unique {
-            uniqueObject.objectId = id
-        }
+    static func create(withId id: String) -> EntityType? {
+        var object = EntityType()
+        object.objectId = id
         return object
     }
+}
+
+//----------------------------------------------------------------------------------------------------------
+//
+// MARK: - Extension - Fetch
+//
+//----------------------------------------------------------------------------------------------------------
+
+extension LocalAccessible where EntityType : Object {
     
-//--------------------------------------------------
-// MARK: - Fetch
-//--------------------------------------------------
-    
-    func fetch(withId id: String) -> Type? {
-        var fetchedEntity: Type?
+    static func fetch(withId id: String) -> EntityType? {
+        var fetchedEntity: EntityType?
         if let realm = try? Realm() {
-            fetchedEntity = realm.objects(Type.self).filter({ (element: Type) -> Bool in
-                return (element as? Unique)?.objectId == id
-            }).first
+            fetchedEntity = realm.objects(EntityType.self).filter({ $0.objectId == id }).first
         }
-        return realmCopy(fetchedEntity)
+        return fetchedEntity != nil ? realmCopy(fetchedEntity!) : nil
     }
     
-    func fetchAll(sortKeys: [SortKey] = []) -> [Type] {
-        var fetchedEntities: [Type] = []
+    static func fetchAll(sortKeys: [SortKey] = []) -> [EntityType] {
+        var fetchedEntities: [EntityType] = []
         if let realm = try? Realm() {
-            var results = realm.objects(Type.self)
+            var results = realm.objects(EntityType.self)
             
             var sortProperties: [SortDescriptor] = []
             for key in sortKeys {
@@ -102,19 +89,24 @@ struct RealmAccessor<Type:Object> : DataAccessorType {
             results = results.sorted(sortProperties)
             fetchedEntities = results.filter({ _ in return true })
         }
-        return fetchedEntities.map({ $0 })
+        return fetchedEntities.map({ realmCopy($0) })
     }
+}
+
+//----------------------------------------------------------------------------------------------------------
+//
+// MARK: - Extension - Save
+//
+//----------------------------------------------------------------------------------------------------------
+
+extension LocalAccessible where EntityType : Object {
     
-//--------------------------------------------------
-// MARK: - Save
-//--------------------------------------------------
-    
-    func save(objects: [Type], completion: ((savedObjects: [Type], error: NSError?) -> ())?) {
+    static func save(objects: [EntityType], completion: ((savedObjects: [EntityType], error: NSError?) -> ())?) {
         if let realm = try? Realm() {
             _ = try? realm.write {
                 realm.add(objects, update: true)
             }
-            let savedObjects = objects.map({ realmCopy($0)! })
+            let savedObjects = objects.map({ realmCopy($0) })
             completion?(savedObjects: savedObjects, error: nil)
         }
     }

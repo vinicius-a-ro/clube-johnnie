@@ -34,13 +34,14 @@ extension TestMultimediaItem : RemoteAccessible {
     
     static func map(json: JSON, urlKey: String, associatedObject: Unique? = nil) -> TestMultimediaItem? {
         let id = "\(associatedObject?.objectId ?? "")-\(json[urlKey].stringValue)"
-        let newItem = TestMultimediaItem.dataAccess.create(withId: id)!
+        let newItem = TestMultimediaItem.create(withId: id)!
         newItem.remoteURL = json[urlKey].stringValue
         return newItem
     }
 }
 
 extension TestMultimediaItem : LocalAccessible {
+    typealias EntityType = TestMultimediaItem
     var objectId: String {
         get { return self.remoteURL }
         set { self.remoteURL = newValue }

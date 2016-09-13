@@ -30,14 +30,9 @@ protocol Unique {
 }
 
 protocol LocalAccessible : Unique {
-    associatedtype DataAccessor : DataAccessorType
-    static var dataAccess: DataAccessor {get}
-}
-
-protocol DataAccessorType {
-    associatedtype EntityType
-    func create(withId id: String) -> EntityType?
-    func fetchAll(sortKeys: [SortKey]) -> [EntityType]
-    func fetch(withId id: String) -> EntityType?
-    func save(objects: [EntityType], completion: ((savedObjects: [EntityType], error: NSError?) -> ())?)
+    associatedtype EntityType : Unique
+    static func create(withId id: String) -> EntityType?
+    static func fetchAll(sortKeys: [SortKey]) -> [EntityType]
+    static func fetch(withId id: String) -> EntityType?
+    static func save(objects: [EntityType], completion: ((savedObjects: [EntityType], error: NSError?) -> ())?)
 }

@@ -49,6 +49,7 @@ extension TestUser : RemoteAccessible {
 }
 
 extension TestUser : LocalAccessible {
+    typealias EntityType = TestUser
     var objectId: String {
         get { return self.testUserId }
         set { self.testUserId = newValue }
