@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 @testable import ClubeJohnnie
 
 //----------------------------------------------------------------------------------------------------------
@@ -16,7 +15,7 @@ import RealmSwift
 //
 //----------------------------------------------------------------------------------------------------------
 
-class TestMultimediaItem : Object {
+class TestMultimediaItem {
     
     dynamic var remoteURL: String = ""
     dynamic var cacheURL: String = ""
@@ -28,22 +27,22 @@ class TestMultimediaItem : Object {
 
 extension TestMultimediaItem : RemoteAccessible {
     
-    static func map(json: JSON) -> TestMultimediaItem? {
+    static func map(_ json: JSON) -> TestMultimediaItem? {
         return TestMultimediaItem.map(json, urlKey: "url")
     }
     
-    static func map(json: JSON, urlKey: String, associatedObject: Unique? = nil) -> TestMultimediaItem? {
+    static func map(_ json: JSON, urlKey: String, associatedObject: Unique? = nil) -> TestMultimediaItem? {
         let id = "\(associatedObject?.objectId ?? "")-\(json[urlKey].stringValue)"
-        let newItem = TestMultimediaItem.create(withId: id)!
+        let newItem = TestMultimediaItem()
         newItem.remoteURL = json[urlKey].stringValue
         return newItem
     }
 }
 
-extension TestMultimediaItem : LocalAccessible {
-    typealias EntityType = TestMultimediaItem
-    var objectId: String {
-        get { return self.remoteURL }
-        set { self.remoteURL = newValue }
-    }
-}
+//extension TestMultimediaItem : LocalAccessible {
+//    typealias EntityType = TestMultimediaItem
+//    var objectId: String {
+//        get { return self.remoteURL }
+//        set { self.remoteURL = newValue }
+//    }
+//}

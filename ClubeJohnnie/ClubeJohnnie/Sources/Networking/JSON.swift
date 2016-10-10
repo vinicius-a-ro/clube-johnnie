@@ -15,11 +15,11 @@ import Foundation
 //----------------------------------------------------------------------------------------------------------
 
 public enum JSONType {
-    case Dictionary
-    case Array
-    case String
-    case Number
-    case Null
+    case dictionary
+    case array
+    case string
+    case number
+    case null
 }
 
 //----------------------------------------------------------------------------------------------------------
@@ -34,21 +34,21 @@ public struct JSON {
 // MARK: - Properties
 //--------------------------------------------------
     
-    private var _type: JSONType = .Null
-    private var _object: AnyObject?
-    private var object: AnyObject? {
+    fileprivate var _type: JSONType = .null
+    fileprivate var _object: Any?
+    fileprivate var object: Any? {
         get {
             return self._object
         }
         set {
             self._object = newValue
             switch newValue {
-            case _ as [AnyObject]: self._type = .Array
-            case _ as [String : AnyObject]: self._type = .Dictionary
-            case _ as NSNumber: self._type = .Number
-            case _ as String: self._type = .String
+            case _ as [Any]: self._type = .array
+            case _ as [String : Any]: self._type = .dictionary
+            case _ as NSNumber: self._type = .number
+            case _ as String: self._type = .string
             default:
-                self._type = .Null
+                self._type = .null
                 self._object = nil
             }
         }
@@ -62,14 +62,14 @@ public struct JSON {
 // MARK: - Initializers
 //--------------------------------------------------
     
-    public init(object: AnyObject? = nil) {
+    public init(object: Any? = nil) {
         self.object = object
     }
     
-    public init(data: NSData?) {
+    public init(data: Data?) {
         if let data = data {
             do {
-                let object: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+                let object: Any = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
                 self.init(object: object)
             } catch {
                 self.init()
@@ -91,34 +91,34 @@ extension JSON {
     
     public subscript(key: String) -> JSON {
         get {
-            if self.type == .Dictionary {
-                let dict = self.object as! [String : AnyObject]
+            if self.type == .dictionary {
+                let dict = self.object as! [String : Any]
                 return JSON(object: dict[key])
             }
             return JSON()
         }
         set {
-            if self.type == .Dictionary {
-                var dict = self.object as! [String : AnyObject]
+            if self.type == .dictionary {
+                var dict = self.object as! [String : Any]
                 dict[key] = newValue.object
-                self.object = dict
+                self.object = dict as Any?
             }
         }
     }
     
     public subscript(index: Int) -> JSON {
         get {
-            if self.type == .Array {
-                let array = self.object as! [AnyObject]
+            if self.type == .array {
+                let array = self.object as! [Any]
                 return JSON(object: array[index])
             }
             return JSON()
         }
         set {
-            if self.type == .Array {
-                var array = self.object as! [AnyObject]
+            if self.type == .array {
+                var array = self.object as! [Any]
                 array[index] = newValue.object!
-                self.object = array
+                self.object = array as Any?
             }
         }
     }
@@ -133,11 +133,11 @@ extension JSON {
 extension JSON {
  
     public var numberValue: NSNumber? {
-        return self.type == .Number ? self.object as? NSNumber : nil
+        return self.type == .number ? self.object as? NSNumber : nil
     }
     
     public var int: Int? {
-        return self.type == .Number ? self.numberValue?.integerValue : nil
+        return self.type == .number ? self.numberValue?.intValue : nil
     }
     
     public var intValue: Int {
@@ -146,9 +146,9 @@ extension JSON {
     
     public var bool: Bool? {
         switch self.type {
-        case .Number: return self.numberValue?.boolValue
-        case .String:
-            let stringValue = self.stringValue.lowercaseString
+        case .number: return self.numberValue?.boolValue
+        case .string:
+            let stringValue = self.stringValue.lowercased()
             return stringValue == "true" || stringValue == "t"
         default: return nil
         }
@@ -159,7 +159,7 @@ extension JSON {
     }
     
     public var float: Float? {
-        return self.type == .Number ? self.numberValue?.floatValue : nil
+        return self.type == .number ? self.numberValue?.floatValue : nil
     }
     
     public var floatValue: Float {
@@ -167,7 +167,7 @@ extension JSON {
     }
     
     public var string: String? {
-        return self.type == .String ? self.object as? String : nil
+        return self.type == .string ? self.object as? String : nil
     }
    
     public var stringValue: String {
@@ -175,8 +175,8 @@ extension JSON {
     }
     
     public var array: [JSON]? {
-        if self.type == .Array {
-            return (self.object as! [AnyObject]).map({ JSON(object: $0) })
+        if self.type == .array {
+            return (self.object as! [Any]).map({ JSON(object: $0) })
         }
         return nil
     }
@@ -196,9 +196,9 @@ extension JSON : CustomStringConvertible, CustomDebugStringConvertible {
     
     public var description: String {
         switch self.type {
-        case .Array, .Dictionary:
-            let data = try! NSJSONSerialization.dataWithJSONObject(self.object!, options: .PrettyPrinted)
-            return NSString(data: data, encoding: NSUTF8StringEncoding) as? String ?? "unknown"
+        case .array, .dictionary:
+            let data = try! JSONSerialization.data(withJSONObject: self.object!, options: .prettyPrinted)
+            return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String ?? "unknown"
         default:
             return "\(self.object)"
         }

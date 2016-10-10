@@ -30,7 +30,7 @@ class RemoteTests: ClubeJohnnieTests {
 //--------------------------------------------------
     
     func testRemoteGET_ByGettingUserFromServer_ShouldReturnValidJSON() {
-        let expectation = self.expectationWithDescription("get request")
+        let expectation = self.expectation(description: "get request")
         
         TestUser.get(withId: "1") { (json, error) in
             XCTAssertNil(error)
@@ -39,11 +39,11 @@ class RemoteTests: ClubeJohnnieTests {
             XCTAssertEqual(json!["age"].intValue, 26)
             expectation.fulfill()
         }
-        self.waitForExpectationsWithTimeout(60, handler: nil)
+        self.waitForExpectations(timeout: 60, handler: nil)
     }
 
     func testRemoteGET_ByGettingAllUserFromServer_ShouldReturnValidJSON() {
-        let expectation = self.expectationWithDescription("get all request")
+        let expectation = self.expectation(description: "get all request")
         
         TestUser.getAll { (json, error) in
             XCTAssertNil(error)
@@ -61,7 +61,7 @@ class RemoteTests: ClubeJohnnieTests {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(60, handler: nil)
+        self.waitForExpectations(timeout: 60, handler: nil)
     }
     
 //--------------------------------------------------
@@ -69,7 +69,7 @@ class RemoteTests: ClubeJohnnieTests {
 //--------------------------------------------------
     
     func testRemoteMap_ByMappingRemoteJSONToUser_ShouldMapJSONValuesIntoModelObject() {
-        let expectation = self.expectationWithDescription("get request + map")
+        let expectation = self.expectation(description: "get request + map")
         
         TestUser.get(withId: "1") { (json, error) in
             let testUser = TestUser.map(json!)!
@@ -79,11 +79,11 @@ class RemoteTests: ClubeJohnnieTests {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(60, handler: nil)
+        self.waitForExpectations(timeout: 60, handler: nil)
     }
     
     func testRemoteMap_ByMappingRemoteJSONArrayToUser_ShouldMapJSONValuesIntoModelObject() {
-        let expectation = self.expectationWithDescription("get all request + map")
+        let expectation = self.expectation(description: "get all request + map")
         
         TestUser.getAll { (json, error) in
             
@@ -101,7 +101,7 @@ class RemoteTests: ClubeJohnnieTests {
             expectation.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(60, handler: nil)
+        self.waitForExpectations(timeout: 60, handler: nil)
     }
     
 //--------------------------------------------------

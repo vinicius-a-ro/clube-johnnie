@@ -22,10 +22,10 @@ class JSONTests : XCTestCase {
 // MARK: - Properties
 //--------------------------------------------------
     
-    var jsonData: NSData {
-        let bundle = NSBundle(forClass: JSONTests.self)
-        let filePath = bundle.pathForResource("User", ofType: "json")
-        return NSData(contentsOfFile: filePath!)!
+    var jsonData: Data {
+        let bundle = Bundle(for: JSONTests.self)
+        let filePath = bundle.path(forResource: "User", ofType: "json")
+        return (try! Data(contentsOf: URL(fileURLWithPath: filePath!)))
     }
     
     var json: JSON {
@@ -61,7 +61,7 @@ class JSONTests : XCTestCase {
         let rewardsHistory = self.json["user"]["rewardsHistory"]
         let firstReward = rewardsHistory[0]
         let secondReward = rewardsHistory[1]
-        XCTAssertTrue(rewardsHistory.type == .Array, "getting \(rewardsHistory.type) instead of Array expected")
+        XCTAssertTrue(rewardsHistory.type == .array, "getting \(rewardsHistory.type) instead of Array expected")
         XCTAssertEqual(firstReward["name"].stringValue, "Milkshake")
         XCTAssertEqual(secondReward["points"].floatValue, 18)
     }

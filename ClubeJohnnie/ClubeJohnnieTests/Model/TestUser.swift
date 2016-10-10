@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 @testable import ClubeJohnnie
 
 //----------------------------------------------------------------------------------------------------------
@@ -16,19 +15,13 @@ import RealmSwift
 //
 //----------------------------------------------------------------------------------------------------------
 
-class TestUser : Object {
+class TestUser {
     
-    dynamic var testUserId: String = ""
-    dynamic var name: String = ""
-    dynamic var age: Int = 0
-    dynamic var verified: Bool = false
-    dynamic var profilePicture: TestMultimediaItem?
-    
-    var someNotStoredProperty: String = "Value"
-    
-    override static func ignoredProperties() -> [String] {
-        return ["someNotStoredProperty"]
-    }
+    var testUserId: String = ""
+    var name: String = ""
+    var age: Int = 0
+    var verified: Bool = false
+    var profilePicture: TestMultimediaItem?
 }
 
 extension TestUser : RemoteAccessible {
@@ -37,21 +30,21 @@ extension TestUser : RemoteAccessible {
         return "TestUser"
     }
     
-    static func map(json: JSON) -> TestUser? {
+    static func map(_ json: JSON) -> TestUser? {
         let testUser = TestUser()
         testUser.testUserId = json["testUserId"].stringValue
         testUser.name = json["name"].stringValue
         testUser.age = json["age"].intValue
         testUser.verified = json["verified"].boolValue
-        testUser.profilePicture = TestMultimediaItem.map(json, urlKey: "profilePictureURL", associatedObject: testUser)!
+//        testUser.profilePicture = TestMultimediaItem.map(json, urlKey: "profilePictureURL", associatedObject: testUser)!
         return testUser
     }
 }
 
-extension TestUser : LocalAccessible {
-    typealias EntityType = TestUser
-    var objectId: String {
-        get { return self.testUserId }
-        set { self.testUserId = newValue }
-    }
-}
+//extension TestUser : LocalAccessible {
+//    typealias EntityType = TestUser
+//    var objectId: String {
+//        get { return self.testUserId }
+//        set { self.testUserId = newValue }
+//    }
+//}

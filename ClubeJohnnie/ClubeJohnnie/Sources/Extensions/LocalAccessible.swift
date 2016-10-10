@@ -15,8 +15,8 @@ import Foundation
 //----------------------------------------------------------------------------------------------------------
 
 public enum SortKey {
-    case Ascending(String)
-    case Descending(String)
+    case ascending(String)
+    case descending(String)
 }
 
 //----------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ protocol Unique {
 protocol LocalAccessible : Unique {
     associatedtype EntityType : Unique
     static func create(withId id: String) -> EntityType?
-    static func fetchAll(sortKeys: [SortKey]) -> [EntityType]
+    static func fetchAll(_ sortKeys: [SortKey]) -> [EntityType]
     static func fetch(withId id: String) -> EntityType?
-    static func save(objects: [EntityType], completion: ((savedObjects: [EntityType], error: NSError?) -> ())?)
+    static func save(_ objects: [EntityType], completion: ((_ savedObjects: [EntityType], _ error: NSError?) -> ())?)
 }

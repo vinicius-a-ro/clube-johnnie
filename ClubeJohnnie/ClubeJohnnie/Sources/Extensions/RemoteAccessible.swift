@@ -14,7 +14,7 @@ import Foundation
 //
 //----------------------------------------------------------------------------------------------------------
 
-typealias RemoteResult = (json: JSON?, error: NSError?) -> ()
+typealias RemoteResult = (_ json: JSON?, _ error: Error?) -> ()
 
 //----------------------------------------------------------------------------------------------------------
 //
@@ -25,8 +25,8 @@ typealias RemoteResult = (json: JSON?, error: NSError?) -> ()
 protocol RemoteAccessible {
     associatedtype EntityType
     static var entityName: String {get}
-    static func map(json: JSON) -> EntityType?
-    static func mapArray(json: JSON) -> [EntityType]
+    static func map(_ json: JSON) -> EntityType?
+    static func mapArray(_ json: JSON) -> [EntityType]
 }
 
 //----------------------------------------------------------------------------------------------------------
@@ -37,12 +37,12 @@ protocol RemoteAccessible {
 
 extension RemoteAccessible {
     
-    static func getAll(sortKeys: [SortKey]? = [], completion: RemoteResult) {
-        NetworkManager.sharedInstance.request(.GET, url: "/\(self.entityName.lowercaseFirst)", completion: completion)
+    static func getAll(_ sortKeys: [SortKey]? = [], completion: @escaping RemoteResult) {
+        NetworkManager.sharedInstance.request(.get, url: "/\(self.entityName.lowercaseFirst)", completion: completion)
     }
     
-    static func get(withId id: String, completion: RemoteResult) {
-        NetworkManager.sharedInstance.request(.GET, url: "/\(self.entityName.lowercaseFirst)/\(id)", completion: completion)
+    static func get(withId id: String, completion: @escaping RemoteResult) {
+        NetworkManager.sharedInstance.request(.get, url: "/\(self.entityName.lowercaseFirst)/\(id)", completion: completion)
     }
 }
 
@@ -54,14 +54,14 @@ extension RemoteAccessible {
 
 extension RemoteAccessible {
     
-    static func mapArray(json: JSON) -> [EntityType] {
+    static func mapArray(_ json: JSON) -> [EntityType] {
         
         var mappedObjects = [EntityType]()
         
         for objectJson in json.arrayValue {
             
-            if objectJson.type == .Array {
-                mappedObjects.appendContentsOf(self.mapArray(objectJson))
+            if objectJson.type == .array {
+                mappedObjects.append(contentsOf: self.mapArray(objectJson))
             }
             else {
                 if let object = self.map(objectJson) {

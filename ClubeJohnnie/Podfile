@@ -7,7 +7,6 @@ use_frameworks!
 
 def import_pods
   pod 'Alamofire'
-  pod 'RealmSwift'
 end
 
 target 'ClubeJohnnie' do

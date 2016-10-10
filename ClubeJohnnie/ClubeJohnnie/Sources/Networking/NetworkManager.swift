@@ -15,13 +15,13 @@ import Alamofire
 //
 //----------------------------------------------------------------------------------------------------------
 
-public typealias NetworkResult = (json: JSON?, error: NSError?) -> ()
+public typealias NetworkResult = (_ json: JSON?, _ error: Error?) -> ()
 
 public enum Method: String {
-    case GET
-    case POST
-    case DELETE
-    case PUT
+    case get
+    case post
+    case delete
+    case put
 }
 
 //----------------------------------------------------------------------------------------------------------
@@ -30,29 +30,29 @@ public enum Method: String {
 //
 //----------------------------------------------------------------------------------------------------------
 
-public class NetworkManager {
+open class NetworkManager {
     
 //--------------------------------------------------
 // MARK: - Properties
 //--------------------------------------------------
     
-    public static let sharedInstance = NetworkManager()
-    public var baseURLString: String = ""
+    open static let sharedInstance = NetworkManager()
+    open var baseURLString: String = ""
     
-    public func request(requestType: Method,
+    open func request(_ type: Method,
                         url: String,
                         parameters: [String : AnyObject]? = nil,
-                        completion: NetworkResult) {
+                        completion: @escaping NetworkResult) {
         
         let url = "\(NetworkManager.sharedInstance.baseURLString)\(url)"
-        let method = Alamofire.Method(requestType)
+        let method = Alamofire.HTTPMethod(type)
         
-        Alamofire.request(method, url, parameters: parameters)
+        Alamofire.request(url, method: method, parameters: parameters)
             .responseJSON { response in
                 
             let responseJSON = JSON(data: response.data)
             if responseJSON["success"].boolValue {
-                completion(json: responseJSON["data"], error: response.result.error)
+                completion(responseJSON["data"], response.result.error)
             }
             else {
                 // TODO: handle error
@@ -67,13 +67,13 @@ public class NetworkManager {
 //
 //----------------------------------------------------------------------------------------------------------
 
-extension Alamofire.Method {
+extension Alamofire.HTTPMethod {
     init(_ method: Method) {
         switch method {
-        case .GET: self = .GET
-        case .POST: self = .POST
-        case .DELETE: self = .DELETE
-        case .PUT: self = .PUT
+        case .get: self = .get
+        case .post: self = .post
+        case .delete: self = .delete
+        case .put: self = .put
         }
     }
 }
