@@ -15,7 +15,14 @@ import Alamofire
 //
 //----------------------------------------------------------------------------------------------------------
 
-public typealias NetworkResult = (_ json: JSON?, _ error: Error?) -> ()
+protocol RemoteManager {
+    func request(type: Method,
+                 url: String,
+                 parameters: [String : AnyObject]?,
+                 completion: @escaping JSONResult)
+}
+
+public typealias JSONResult = (_ json: JSON?, _ error: Error?) -> ()
 
 public enum Method: String {
     case get
@@ -30,7 +37,7 @@ public enum Method: String {
 //
 //----------------------------------------------------------------------------------------------------------
 
-open class NetworkManager {
+open class NetworkManager : RemoteManager {
     
 //--------------------------------------------------
 // MARK: - Properties
@@ -39,10 +46,10 @@ open class NetworkManager {
     open static let sharedInstance = NetworkManager()
     open var baseURLString: String = ""
     
-    open func request(_ type: Method,
-                        url: String,
-                        parameters: [String : AnyObject]? = nil,
-                        completion: @escaping NetworkResult) {
+    open func request(type: Method,
+                      url: String,
+                      parameters: [String : AnyObject]? = nil,
+                      completion: @escaping JSONResult) {
         
         let url = "\(NetworkManager.sharedInstance.baseURLString)\(url)"
         let method = Alamofire.HTTPMethod(type)

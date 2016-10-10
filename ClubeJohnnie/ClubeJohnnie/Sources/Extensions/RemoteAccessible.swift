@@ -14,8 +14,6 @@ import Foundation
 //
 //----------------------------------------------------------------------------------------------------------
 
-typealias RemoteResult = (_ json: JSON?, _ error: Error?) -> ()
-
 //----------------------------------------------------------------------------------------------------------
 //
 // MARK: - Definitions -
@@ -37,12 +35,23 @@ protocol RemoteAccessible {
 
 extension RemoteAccessible {
     
-    static func getAll(_ sortKeys: [SortKey]? = [], completion: @escaping RemoteResult) {
-        NetworkManager.sharedInstance.request(.get, url: "/\(self.entityName.lowercaseFirst)", completion: completion)
+    static func getAll(remoteManager: RemoteManager = NetworkManager.sharedInstance,
+                       completion: @escaping JSONResult) {
+        
+        remoteManager.request(type: .get,
+                              url: "/\(self.entityName.lowercaseFirst)",
+                              parameters: nil,
+                              completion: completion)
     }
     
-    static func get(withId id: String, completion: @escaping RemoteResult) {
-        NetworkManager.sharedInstance.request(.get, url: "/\(self.entityName.lowercaseFirst)/\(id)", completion: completion)
+    static func get(withId id: String,
+                    remoteManager: RemoteManager = NetworkManager.sharedInstance,
+                    completion: @escaping JSONResult) {
+        
+        remoteManager.request(type: .get,
+                              url: "/\(self.entityName.lowercaseFirst)/\(id)",
+                              parameters: nil,
+                              completion: completion)
     }
 }
 
