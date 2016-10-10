@@ -109,14 +109,14 @@ extension JSON {
     public subscript(index: Int) -> JSON {
         get {
             if self.type == .array {
-                let array = self.object as! [Any]
+                let array = self.object as! NSArray
                 return JSON(object: array[index])
             }
             return JSON()
         }
         set {
             if self.type == .array {
-                var array = self.object as! [Any]
+                let array = self.object as! NSMutableArray
                 array[index] = newValue.object!
                 self.object = array as Any?
             }
@@ -176,7 +176,7 @@ extension JSON {
     
     public var array: [JSON]? {
         if self.type == .array {
-            return (self.object as! [Any]).map({ JSON(object: $0) })
+            return (self.object as! NSArray).map({ JSON(object: $0) })
         }
         return nil
     }

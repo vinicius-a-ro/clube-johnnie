@@ -32,7 +32,7 @@ extension TestMultimediaItem : RemoteAccessible {
     }
     
     static func map(_ json: JSON, urlKey: String, associatedObject: Unique? = nil) -> TestMultimediaItem? {
-        let id = "\(associatedObject?.objectId ?? "")-\(json[urlKey].stringValue)"
+//        let id = "\(associatedObject?.objectId ?? "")-\(json[urlKey].stringValue)"
         let newItem = TestMultimediaItem()
         newItem.remoteURL = json[urlKey].stringValue
         return newItem
